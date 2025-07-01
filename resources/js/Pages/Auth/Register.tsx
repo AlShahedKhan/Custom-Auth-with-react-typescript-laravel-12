@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Eye, EyeOff, User, Mail, Lock, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff, User, Mail, Lock, ArrowRight } from "lucide-react";
 
 const Register = () => {
     return (
@@ -39,6 +39,49 @@ const Register = () => {
                                     className="block w-full pl-10 pr-3 py-3 border ${
                errors.first_name ? 'border-red-300' : 'border-gray-300'
                } rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                />
+                            </div>
+                            {/* {errors.name && (
+                                <p className="mt-1 text-sm text-red-600">
+                                    {errors.name}
+                                </p>
+                            )} */}
+                        </div>
+                        <div>
+                            <label
+                                htmlFor="email"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                            >
+                                Email Address
+                            </label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autoComplete="email"
+                                required
+                                className={`block w-full pl-10 pr-3 py-3 border  rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200`}
+                                placeholder="Enter your email"
+                            />
+                        </div>
+                        <div>
+                            <label
+                                htmlFor="password"
+                                className="block text-small font-medium text-gray-700 mb-1"
+                            >
+                                Password
+                            </label>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <Lock className="h-5 w-5 text-gray-400" />
+                                </div>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autoComplete="new-password"
+                                    required
+                                    className="block w-full pl-10 pr-12 py-3 border rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" placeholder="Enter your password"
                                 />
                             </div>
                         </div>

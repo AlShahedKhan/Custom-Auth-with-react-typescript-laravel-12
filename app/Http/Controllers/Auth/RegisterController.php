@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Inertia\Inertia;
+use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class RegisterController extends Controller
 {
-    public function register()
+     public function create()
     {
         return Inertia::render('Auth/Register');
     }

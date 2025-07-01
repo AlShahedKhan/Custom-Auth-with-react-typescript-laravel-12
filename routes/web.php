@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Auth\UserController;
@@ -9,5 +10,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/post', PostController::class);
-Route::get('/register', [UserController::class, 'register'])
+
+Route::get('/register', [RegisterController::class, 'create'])
+    ->middleware('guest')
     ->name('register');

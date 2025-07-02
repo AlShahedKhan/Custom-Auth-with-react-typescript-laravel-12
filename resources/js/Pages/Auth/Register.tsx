@@ -6,13 +6,13 @@ const Register = () => {
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
                 <div className="text-center">
-                    <div className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center mb-4">
+                    <div className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center mb-4 transform hover:scale-105 active:scale-95 duration-200">
                         <User className="h-8 w-8 text-white " />
                     </div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2 transform hover:scale-105 active:scale-95 duration-200">
                         Create your account
                     </h2>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 transform hover:scale-105 active:scale-95 duration-200">
                         Join us today and get started
                     </p>
                 </div>
@@ -25,7 +25,7 @@ const Register = () => {
                             >
                                 First Name
                             </label>
-                            <div className="relative">
+                            <div className="relative transform hover:scale-105 active:scale-95 duration-200">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <User className="h-5 w-5 text-gray-400" />
                                 </div>
@@ -57,7 +57,7 @@ const Register = () => {
                             >
                                 Email Address
                             </label>
-                            <div className="relative">
+                            <div className="relative transform hover:scale-105 active:scale-95 duration-200">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
                                     <Mail className="h-5 w-5 text-gray-400" />
                                 </div>
@@ -79,7 +79,7 @@ const Register = () => {
                             >
                                 Password
                             </label>
-                            <div className="relative">
+                            <div className="relative transform hover:scale-105 active:scale-95 duration-200">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <Lock className="h-5 w-5 text-gray-400" />
                                 </div>
@@ -108,7 +108,7 @@ const Register = () => {
                             >
                                 Confirm Password
                             </label>
-                            <div className="relative">
+                            <div className="relative transform hover:scale-105 active:scale-95 duration-200">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <Lock className="h-5 w-5 text-gray-400" />
                                 </div>
@@ -118,7 +118,7 @@ const Register = () => {
                                     type="password"
                                     autoComplete="new-password"
                                     required
-                                    className="block w-full pl-10 pr-12 py-3 border rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                    className="block w-full pl-10 pr-12 py-3 border rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 "
                                     placeholder="Confirm Password"
                                 />
                                 <button
@@ -134,9 +134,18 @@ const Register = () => {
                                     Create Account
                                 </button>
                             </div>
-                            <div className="text-center">
-                                <p className="text-sm text-gray-600">Already have an account?</p>
-                                <a href="#" className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">Sign in here</a>
+                            <div className="text-center ">
+                                <p className="text-sm text-gray-600 transform hover:scale-105 active:scale-95 duration-200">
+                                    Already have an account?
+                                </p>
+                                <div className="transform hover:scale-105 active:scale-95 duration-200">
+                                    <a
+                                        href="#"
+                                        className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200"
+                                    >
+                                        Sign in here
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

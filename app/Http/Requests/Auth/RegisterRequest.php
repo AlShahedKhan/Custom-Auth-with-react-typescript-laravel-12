@@ -41,7 +41,6 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'This email is already registered.',
             'password.password' => 'Please enter a valid password',
             'password.confirmed' => 'Password confirmation does not match.'
-
         ];
     }
 }

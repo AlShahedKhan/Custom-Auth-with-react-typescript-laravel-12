@@ -30,4 +30,18 @@ class RegisterRequest extends FormRequest
             'password' => ['required'|'confirmed'|Password::defaults()]
         ];
     }
+
+    public function messages(): array
+    {
+        return[
+            'first_name.required' => 'Please enter your first name.',
+            'last_name.required' => 'Please enter your last name.',
+            'email.required' => 'Please enter your email address.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique' => 'This email is already registered.',
+            'password.password' => 'Please enter a valid password',
+            'password.confirmed' => 'Password confirmation does not match.'
+
+        ];
+    }
 }

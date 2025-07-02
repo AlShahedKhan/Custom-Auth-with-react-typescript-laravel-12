@@ -11,6 +11,10 @@ Route::get('/', function () {
 
 Route::resource('/post', PostController::class);
 
+Route::get('/dashboard', [RegisterController::class, 'create'])
+    ->middleware('auth')
+    ->name('dashboard');
+
 Route::get('/register', [RegisterController::class, 'create'])
     ->middleware('guest')
     ->name('register');

@@ -92,6 +92,13 @@ const Register = () => {
                                     className="block w-full pl-10 pr-12 py-3 border rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                     placeholder="Enter your password"
                                 />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                >
+                                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
+                                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer hidden" />
+                                </button>
                             </div>
                         </div>
                         <div>
@@ -114,7 +121,22 @@ const Register = () => {
                                     className="block w-full pl-10 pr-12 py-3 border rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                     placeholder="Confirm Password"
                                 />
-                                {/* <button></button> */}
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                >
+                                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
+                                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer hidden" />
+                                </button>
+                            </div>
+                            <div>
+                                <button className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105  mt-3">
+                                    Create Account
+                                </button>
+                            </div>
+                            <div className="text-center">
+                                <p className="text-sm text-gray-600">Already have an account?</p>
+                                <a href="#" className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">Sign in here</a>
                             </div>
                         </div>
                     </div>

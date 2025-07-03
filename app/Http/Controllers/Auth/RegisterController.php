@@ -67,4 +67,11 @@ class RegisterController extends Controller
             return back()->withErrors(['general' => 'Registration failed. Please try again.']);
         }
     }
+
+    public function dashboard()
+    {
+        return Inertia::render('Auth/Dashboard', [
+            'user' => Auth::user(),
+        ]);
+    }
 }

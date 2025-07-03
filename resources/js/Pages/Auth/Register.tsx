@@ -1,7 +1,52 @@
-// import React from 'react';
+import React, { FormEvent, useState } from "react";
 import { Eye, EyeOff, User, Mail, Lock, ArrowRight } from "lucide-react";
 
-const Register = () => {
+interface FormData {
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+}
+
+interface FromErrors {
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    password?: string;
+    password_confirmation?: string;
+}
+
+interface Props {
+    errors?: FromErrors;
+    csrfToken: string;
+}
+
+const Register: React.FC<Props> = ({ errors = {}, csrfToken }) => {
+    const [data, setData] = useState<FormData>({
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+    });
+
+    const [processing, setProcessing] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handelSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        setProcessing(true);
+    }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">

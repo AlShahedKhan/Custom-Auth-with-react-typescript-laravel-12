@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Models\Auth\User;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterRequest extends FormRequest
 {
@@ -24,23 +23,26 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|max:25',
-            'last_name' => ['required'|'string'|'max:25'],
-            'email' => ['required'|'string'|'lowercase'|'email'|'max:30'|'unique:'.User::class],
-            'password' => ['required'|'confirmed'|Password::defaults()]
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Password::defaults()],
         ];
     }
 
+    /**
+     * Get custom messages for validator errors.
+     */
     public function messages(): array
     {
-        return[
-            'first_name.required' => 'Please enter your first name.',
-            'last_name.required' => 'Please enter your last name.',
-            'email.required' => 'Please enter your email address.',
+        return [
+            'first_name.required' => 'The first name field is required.',
+            'last_name.required' => 'The last name field is required.',
+            'email.required' => 'The email field is required.',
             'email.email' => 'Please enter a valid email address.',
             'email.unique' => 'This email is already registered.',
-            'password.password' => 'Please enter a valid password',
-            'password.confirmed' => 'Password confirmation does not match.'
+            'password.required' => 'The password field is required.',
+            'password.confirmed' => 'The password confirmation does not match.',
         ];
     }
 }

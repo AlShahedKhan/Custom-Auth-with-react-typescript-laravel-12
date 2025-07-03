@@ -13,7 +13,7 @@ class LoginController extends Controller
     {
         return Inertia::render('Auth/Login');
     }
-
+    //
     public function store(Request $request)
     {
         $credentials = $request->validate([

@@ -46,7 +46,36 @@ const Register: React.FC<Props> = ({ errors = {}, csrfToken }) => {
     const handelSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setProcessing(true);
-    }
+
+        try {
+            const token =
+                csrfToken ||
+                document
+                    .querySelector('meta[name="csrf-token]')
+                    ?.getAttribute("content");
+
+            const response = await fetch("/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accent: "application/json",
+                    "X-CSRF-TOKEN": token || "",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                window.location.href = '/dashboard';
+            }else {
+                const errorData = await response.json();
+                console.error('Registration failed:', errorData);
+            }
+        } catch (error) {
+            console.error('Register error:', error);
+        }finally {
+            setProcessing(false);
+        }
+    };
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">

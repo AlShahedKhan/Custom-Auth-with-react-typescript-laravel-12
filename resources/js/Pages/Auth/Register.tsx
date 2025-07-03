@@ -65,17 +65,26 @@ const Register: React.FC<Props> = ({ errors = {}, csrfToken }) => {
             });
 
             if (response.ok) {
-                window.location.href = '/dashboard';
-            }else {
+                window.location.href = "/dashboard";
+            } else {
                 const errorData = await response.json();
-                console.error('Registration failed:', errorData);
+                console.error("Registration failed:", errorData);
             }
         } catch (error) {
-            console.error('Register error:', error);
-        }finally {
+            console.error("Register error:", error);
+        } finally {
             setProcessing(false);
         }
     };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
@@ -110,21 +119,55 @@ const Register: React.FC<Props> = ({ errors = {}, csrfToken }) => {
                                     autoComplete="first_name"
                                     placeholder="Enter you first name"
                                     required
-                                    className="block w-full pl-10 pr-3 py-3 border ${
-               errors.first_name ? 'border-red-300' : 'border-gray-300'
-               } rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                    value={data.first_name}
+                                    onChange={handelChange}
+                                    className={`block w-full pl-10 pr-3 py-3 border ${
+                                        errors.first_name
+                                            ? "border-red-300"
+                                            : "border-gray-300"
+                                    } rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200`}
                                 />
                             </div>
-                            {/* {errors.name && (
+                            {errors.first_name && (
                                 <p className="mt-1 text-sm text-red-600">
-                                    {errors.name}
+                                    {errors.first_name}
                                 </p>
-                            )} */}
+                            )}
                         </div>
                         <div>
-                            {/* <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Mail className="h-5 w-5 text-gray-400" />
-                            </div> */}
+                            <label
+                                htmlFor="first name"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                            >
+                                Last Name
+                            </label>
+                            <div className="relative transform hover:scale-105 active:scale-95 duration-200">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <User className="h-5 w-5 text-gray-400" />
+                                </div>
+                                <input
+                                    id="last_name"
+                                    name="last_name"
+                                    type="text"
+                                    autoComplete="last_name"
+                                    placeholder="Enter you first name"
+                                    required
+                                    value={data.last_name}
+                                    onChange={handelChange}
+                                    className={`block w-full pl-10 pr-3 py-3 border ${
+                                        errors.last_name
+                                            ? "border-red-300"
+                                            : "border-gray-300"
+                                    } rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200`}
+                                />
+                            </div>
+                            {errors.last_name && (
+                                <p className="mt-1 text-sm text-red-600">
+                                    {errors.last_name}
+                                </p>
+                            )}
+                        </div>
+                        <div>
                             <label
                                 htmlFor="email"
                                 className="block text-sm font-medium text-gray-700 mb-1"
@@ -141,9 +184,16 @@ const Register: React.FC<Props> = ({ errors = {}, csrfToken }) => {
                                     type="email"
                                     autoComplete="email"
                                     required
+                                    value={data.email}
+                                    onChange={handelChange}
                                     className={`block w-full pl-10 pr-3 py-3 border  rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200`}
                                     placeholder="Enter your email"
                                 />
+                                {errors.email && (
+                                    <p className="mt-1 text-sm text-red-600">
+                                        {errors.email}
+                                    </p>
+                                )}
                             </div>
                         </div>
                         <div>
@@ -160,19 +210,34 @@ const Register: React.FC<Props> = ({ errors = {}, csrfToken }) => {
                                 <input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     autoComplete="new-password"
                                     required
-                                    className="block w-full pl-10 pr-12 py-3 border rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                    value={data.password}
+                                    onChange={handelChange}
+                                    className={`block w-full pl-10 pr-12 py-3 border ${
+                                        errors.password
+                                            ? "border-red-300"
+                                            : "border-gray-300"
+                                    } rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200`}
                                     placeholder="Enter your password"
                                 />
                                 <button
                                     type="button"
                                     className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                    onClick={togglePasswordVisibility}
                                 >
-                                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-                                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer hidden" />
+                                    {showPassword ? (
+                                        <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
+                                    ) : (
+                                        <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
+                                    )}
                                 </button>
+                                {errors.password && (
+                                    <p className="mt-1 text-sm text-red-600">
+                                        {errors.password}
+                                    </p>
+                                )}
                             </div>
                         </div>
                         <div>
@@ -189,23 +254,55 @@ const Register: React.FC<Props> = ({ errors = {}, csrfToken }) => {
                                 <input
                                     id="password_confirmation"
                                     name="password_confirmation"
-                                    type="password"
+                                    type={
+                                        showConfirmPassword
+                                            ? "text"
+                                            : "password"
+                                    }
                                     autoComplete="new-password"
                                     required
-                                    className="block w-full pl-10 pr-12 py-3 border rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 "
-                                    placeholder="Confirm Password"
+                                    value={data.password_confirmation}
+                                    onChange={handelChange}
+                                    className={`block w-full pl-10 pr-12 py-3 border ${
+                                        errors.password_confirmation
+                                            ? "border-red-300"
+                                            : "border-gray-300"
+                                    } rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200`}
+                                    placeholder="Confirm your password"
                                 />
                                 <button
                                     type="button"
                                     className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                    onClick={toggleConfirmPasswordVisibility}
                                 >
-                                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-                                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer hidden" />
+                                    {showConfirmPassword ? (
+                                        <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                                    ) : (
+                                        <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                                    )}
                                 </button>
                             </div>
                             <div>
-                                <button className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105  mt-3">
-                                    Create Account
+                                <button
+                                    onClick={handelSubmit}
+                                    disabled={processing}
+                                    className="group relative w-full flex justify-center items-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white ${
+                                processing
+                                ? 'bg-gray-400 cursor-not-allowed'
+                                : 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:form-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700'
+                                } bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105  mt-3"
+                                >
+                                    {processing ? (
+                                        <div className="flex items-center">
+                                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                            Creating Account...
+                                        </div>
+                                    ) : (
+                                        <div className="flex items-center">
+                                            Create Account
+                                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                                        </div>
+                                    )}
                                 </button>
                             </div>
                             <div className="text-center ">

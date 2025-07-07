@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 
 const Dashboard: React.FC = () => {
-
     const handleLogout = () => {
-        Inertia.post('/logout');
+        router.post('/logout');
     };
 
     return (
         <div>
             <h1>Dashboard</h1>
             <p>Welcome to your dashboard!</p>
-            <Link href="/logout" method="post" as="button" type="button">Logout</Link>
+            <Link href="/messenger">Messenger</Link>
+            <button onClick={handleLogout} type="button">Logout</button>
         </div>
     );
 };
